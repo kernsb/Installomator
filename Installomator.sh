@@ -349,7 +349,7 @@ if [[ $(/usr/bin/arch) == "arm64" ]]; then
     fi
 fi
 VERSION="10.9beta"
-VERSIONDATE="2025-09-05"
+VERSIONDATE="2025-09-17"
 
 # MARK: Functions
 
@@ -7825,7 +7825,9 @@ parsec)
     name="Parsec"
     type="pkg"
     downloadURL="https://builds.parsecgaming.com/package/parsec-macos.pkg"
+    appNewVersion=$(curl -fsL https://parsec.app/changelog.xml | xmllint -xpath '//*[local-name()="build"]/text()' - | grep -oE '\d+-\d+$' | head -1 | sed -r 's/([0-9]+)-([0-9]+)/\1.\2.0/')
     expectedTeamID="Y9MY52XZDB"
+    blockingProcesses=( "Parsec" )
     ;;
 particulars)
     name="Particulars"
@@ -9501,7 +9503,7 @@ teamviewer)
     versionKey="CFBundleShortVersionString"
     pkgName="Install TeamViewer.app/Contents/Resources/Install TeamViewer.pkg"
     downloadURL="https://download.teamviewer.com/download/TeamViewer.dmg"
-    appNewVersion=$(curl -fs "https://www.teamviewer.com/en/download/macos/" | grep "Current version" | awk -F': ' '{ print $2 }' | sed 's/<[^>]*>//g')
+    appNewVersion=$(curl -fs "https://www.teamviewer.com/en/download/macos/" | grep 'data-json' | grep 'full' | awk -F '"' '{ print $4 }' | sed 's/&quot;/"/g' | plutil -extract "data.0.versionNumber" raw -o - -)
     expectedTeamID="H7UGFBUGV6"
     ;;
 teamviewerhost)
