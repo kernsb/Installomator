@@ -875,6 +875,7 @@ snagit2021
 snagit2022
 snagit2023
 snagit2024
+snagit2025
 snapgene
 snapgeneviewer
 soapuiopensource
