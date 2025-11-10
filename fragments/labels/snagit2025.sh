@@ -1,4 +1,3 @@
-snagit|\
 snagit2025)
     name="Snagit"
     type="dmg"
