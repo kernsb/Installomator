@@ -142,7 +142,6 @@ calcservice
 calibre
 calibriteprofiler
 camostudio
-camtasia
 camtasia2019
 camtasia2020
 camtasia2021
@@ -868,7 +867,6 @@ sloth
 smartgit
 smartsheet
 smartsvn
-snagit
 snagit2019
 snagit2020
 snagit2021
