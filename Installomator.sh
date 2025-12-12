@@ -349,7 +349,7 @@ if [[ $(/usr/bin/arch) == "arm64" ]]; then
     fi
 fi
 VERSION="10.9beta"
-VERSIONDATE="2025-12-01"
+VERSIONDATE="2025-12-12"
 
 # MARK: Functions
 
@@ -3049,7 +3049,7 @@ camtasia2023)
     expectedTeamID="7TQL462TU8"
     ;;
 camtasia2024)
-    name="Camtasia"
+    name="Camtasia 2024"
     type="dmg"
     sparkleData=$(curl -fsL -H 'User-Agent: Camtasia/2024.0.0' 'https://www.techsmith.com/redirect.asp?target=sparkleappcast&product=camtasiamac&ver=2024.0.0&lang=enu&os=mac')
     appNewVersion=$(
@@ -8441,6 +8441,7 @@ outset)
     packageID="io.macadmins.Outset"
     downloadURL=$(downloadURLFromGit "macadmins" "outset")
     appNewVersion=$(versionFromGit "macadmins" "outset")
+    versionKey="CFBundleShortVersionString"
     expectedTeamID="T4SK8ZXCXG"
     blockingProcesses=( NONE )
     ;;
@@ -9757,7 +9758,7 @@ snagit2023)
     expectedTeamID="7TQL462TU8"
     ;;
 snagit2024)
-    name="Snagit"
+    name="Snagit 2024"
     type="dmg"
     sparkleData=$(curl -fsL -H 'User-Agent: Snagit/2024.0.0' 'https://www.techsmith.com/redirect.asp?target=sufeedurl&product=snagitmac&ver=2024.0.0&lang=enu&os=mac')
     appNewVersion=$(
