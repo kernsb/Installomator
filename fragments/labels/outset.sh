@@ -4,7 +4,7 @@ outset)
     packageID="io.macadmins.Outset"
     downloadURL=$(downloadURLFromGit "macadmins" "outset")
     appNewVersion=$(versionFromGit "macadmins" "outset")
-    versionKey="CFBundleShortVersionString"
+    versionKey="CFBundleVersion"
     expectedTeamID="T4SK8ZXCXG"
     blockingProcesses=( NONE )
     ;;
