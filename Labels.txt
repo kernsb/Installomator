@@ -263,6 +263,7 @@ defaultfolderx
 deon-cloud
 deon-onprem
 depnotify
+deskpad
 desktoppr
 detectxswift
 determinate
@@ -383,6 +384,7 @@ garminbasecamp
 garminexpress
 gary
 gather
+gather2
 gathertown
 gdevelop
 geneiousprime
@@ -515,6 +517,7 @@ joplin
 jre8
 jumpcloudpasswordmanager
 jumpdesktop
+jumper
 jupyterlab
 kaleidoscope
 kap
@@ -552,7 +555,7 @@ libericajdk11ltsfull
 libericajdk17ltsfull
 libericajdk8ltsfull
 libreoffice
-libreofficelanguagepack_intl
+libreofficelanguagepackintl
 lifesize
 lightburn
 lightkey
@@ -695,6 +698,7 @@ mysqlworkbenchce
 namiral
 nanosaur
 nativeaccess
+nditools
 nessusagent
 netiquette
 netnewswire
@@ -749,6 +753,7 @@ openrefine
 openvpnconnect
 openvpnconnectv3
 opera
+oraclesqldeveloper
 orbstack
 orcaslicer
 origin
@@ -775,6 +780,7 @@ pdfexpert
 pdfsam
 perimeter81
 pgadmin4
+phoenixcode
 pika
 pingplotter
 pique
@@ -794,6 +800,7 @@ portingkit
 postgresapp
 postman
 powermonitor
+pppcutility
 praat
 prism10
 prism9
@@ -936,6 +943,7 @@ sonoss1
 sonoss2
 soundly
 soundly-placeit
+soundlyshapeit
 sourcetree
 spark
 splashtopbusiness
@@ -947,6 +955,7 @@ sqldeveloper
 sqlitebrowser
 sqlpropostgres
 sqlprostudio
+sshfs
 starface72x
 starface73x
 starface81x
