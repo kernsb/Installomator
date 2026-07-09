@@ -4,17 +4,20 @@ label="" # if no label is sent to the script, this will be used
 # Installomator
 #
 # Downloads and installs Applications
-# 2020-2024 Installomator
+# 2020-2026 Installomator
 #
 # inspired by the download scripts from William Smith and Sander Schram
 #
-# Contributors:
+# Dev Team:
 #    Armin Briegel - @scriptingosx
 #    Isaac Ordonez - @issacatmann
 #    Søren Theilgaard - @Theile
 #    Adam Codega - @acodega
 #    Trevor Sysock - @BigMacAdmin
-#    Bart Reardon - @bartreardon
+#
+# Maintainers:
+#    Gil Burns - @gilburns
+#    Richard Glaser - @uurazzle
 #
 # with contributions from many others
 
@@ -348,8 +351,8 @@ if [[ $(/usr/bin/arch) == "arm64" ]]; then
         rosetta2=no
     fi
 fi
-VERSION="10.9"
-VERSIONDATE="2026-07-03"
+VERSION="10.10beta"
+VERSIONDATE="2026-07-09"
 
 # MARK: Functions
 
@@ -2764,6 +2767,13 @@ beyondcomparepro)
     downloadURL=$(echo "${updateFeed}" | xpath 'string(/Update/@download)' 2>/dev/null)
     expectedTeamID="BS29TEJF86"
     ;;
+bezel)
+    name="Bezel"
+    type="dmg"
+    downloadURL="https://download.nonstrict.eu/bezel/Bezel.dmg"
+    appNewVersion=$(curl -fs "https://download.nonstrict.eu/bezel/appcast.xml" | grep -o '<sparkle:shortVersionString>[^<]*</sparkle:shortVersionString>' | sed -E 's/<[^>]+>//g' | grep -vi 'beta' | head -1)
+    expectedTeamID="WT5N9FK54M"
+    ;;
 bibdesk)
     name="BibDesk"
     type="dmg"
@@ -2929,7 +2939,6 @@ browserosaurus)
     expectedTeamID="Z89KPMLTFR"
     ;;
 bruno)
-    # https://github.com/usebruno/bruno; https://www.usebruno.com/
     name="Bruno"
     type="dmg"
     if [[ $(arch) == "arm64" ]]; then
@@ -2939,7 +2948,7 @@ bruno)
     fi
     downloadURL="$(downloadURLFromGit usebruno bruno)"
     appNewVersion="$(versionFromGit usebruno bruno)"
-    expectedTeamID="W7LPPWA48L"
+    expectedTeamID="P3WTZH48ZB"
     ;;
 bugdom)
     name="Bugdom"
@@ -3034,6 +3043,13 @@ calibriteprofiler)
     downloadURL="$(downloadURLFromGit LUMESCA calibrite-profiler-releases)"
     appNewVersion="$(versionFromGit LUMESCA calibrite-profiler-releases)"
     expectedTeamID="5C392763F5"
+    ;;
+cameracontroller)
+    name="CameraController"
+    type="zip"
+    downloadURL=$(downloadURLFromGit Itaybre CameraController)
+    appNewVersion=$(versionFromGit Itaybre CameraController)
+    expectedTeamID="PY9WJ3M9MW"
     ;;
 camostudio)
     name="Camo Studio"
@@ -5063,16 +5079,6 @@ firecutforpremierepro)
     expectedTeamID="7ASRSVAEMS"
     blockingProcesses=( "Adobe Premiere Pro 2024" "Adobe Premiere Pro 2025" "Adobe Premiere Pro 2026" "Adobe Premiere Pro 2027" )
     ;;
-firefox)
-    name="Firefox"
-    type="dmg"
-    downloadURL="https://download.mozilla.org/?product=firefox-latest&os=osx&lang=en-US"
-    firefoxVersions=$(curl -fs "https://product-details.mozilla.org/1.0/firefox_versions.json")
-    appNewVersion=$(getJSONValue "$firefoxVersions" "LATEST_FIREFOX_VERSION")
-    expectedTeamID="43AQ936H96"
-    blockingProcesses=( firefox )
-    printlog "WARNING for ERROR: Label firefox and firefox_intl should not be used. Instead use firefoxpkg and firefoxpkg_intl as per recommendations from Firefox. It's not fully certain that the app actually gets updated here. firefoxpkg and firefoxpkg_intl will have built in updates and make sure the client is updated in the future." REQ
-    ;;
 firefox_da)
     name="Firefox"
     type="dmg"
@@ -5104,6 +5110,16 @@ firefox_intl)
         printlog "Download not found for '$userLanguage', using default ('en-US')."
         downloadURL="https://download.mozilla.org/?product=firefox-latest-ssl&os=osx"
     fi
+    firefoxVersions=$(curl -fs "https://product-details.mozilla.org/1.0/firefox_versions.json")
+    appNewVersion=$(getJSONValue "$firefoxVersions" "LATEST_FIREFOX_VERSION")
+    expectedTeamID="43AQ936H96"
+    blockingProcesses=( firefox )
+    printlog "WARNING for ERROR: Label firefox and firefox_intl should not be used. Instead use firefoxpkg and firefoxpkg_intl as per recommendations from Firefox. It's not fully certain that the app actually gets updated here. firefoxpkg and firefoxpkg_intl will have built in updates and make sure the client is updated in the future." REQ
+    ;;
+firefox)
+    name="Firefox"
+    type="dmg"
+    downloadURL="https://download.mozilla.org/?product=firefox-latest&os=osx&lang=en-US"
     firefoxVersions=$(curl -fs "https://product-details.mozilla.org/1.0/firefox_versions.json")
     appNewVersion=$(getJSONValue "$firefoxVersions" "LATEST_FIREFOX_VERSION")
     expectedTeamID="43AQ936H96"
@@ -5154,15 +5170,6 @@ firefoxesrpkgintl)
     appNewVersion=${appNewVersion:0:-3}
     expectedTeamID="43AQ936H96"
     ;;
-firefoxpkg)
-    name="Firefox"
-    type="pkg"
-    downloadURL="https://download.mozilla.org/?product=firefox-pkg-latest-ssl&os=osx&lang=en-US"
-    firefoxVersions=$(curl -fs "https://product-details.mozilla.org/1.0/firefox_versions.json")
-    appNewVersion=$(getJSONValue "$firefoxVersions" "LATEST_FIREFOX_VERSION")
-    expectedTeamID="43AQ936H96"
-    blockingProcesses=( firefox )
-    ;;
 firefoxpkg_intl)
     # This label will try to figure out the selected language of the user,
     # and install corrosponding version of Firefox ESR
@@ -5186,6 +5193,15 @@ firefoxpkg_intl)
         printlog "Download not found for that language. Using en-US" WARN
         downloadURL="https://download.mozilla.org/?product=firefox-pkg-latest-ssl&os=osx&lang=en-US"
     fi
+    firefoxVersions=$(curl -fs "https://product-details.mozilla.org/1.0/firefox_versions.json")
+    appNewVersion=$(getJSONValue "$firefoxVersions" "LATEST_FIREFOX_VERSION")
+    expectedTeamID="43AQ936H96"
+    blockingProcesses=( firefox )
+    ;;
+firefoxpkg)
+    name="Firefox"
+    type="pkg"
+    downloadURL="https://download.mozilla.org/?product=firefox-pkg-latest-ssl&os=osx&lang=en-US"
     firefoxVersions=$(curl -fs "https://product-details.mozilla.org/1.0/firefox_versions.json")
     appNewVersion=$(getJSONValue "$firefoxVersions" "LATEST_FIREFOX_VERSION")
     expectedTeamID="43AQ936H96"
@@ -5332,6 +5348,13 @@ fujifilmwebcam)
     downloadURL=$(curl -fsL "https://www.fujifilm-x.com/en-us/support/download/software/x-webcam/" | grep "https.*pkg" | sed -E 's/.*(https:\/\/dl.fujifilm-x\.com\/support\/software\/.*\.pkg[^\<]).*/\1/g' | sed -e 's/^"//' -e 's/"$//')
     appNewVersion=$( echo “${downloadURL}” | sed -E 's/.*XWebcamIns([0-9]*).*/\1/g' | sed -E 's/([0-9])([0-9]).*/\1\.\2/g')
     expectedTeamID="34LRP8AV2M"
+    ;;
+garminaviationdatabasemanager)
+    name="Garmin Aviation Database Manager"
+    type="pkg"
+    downloadURL="$(curl -fs "https://fly.garmin.com/fly-garmin/garmin-aviation-database-manager/" | grep -Eo "https://static.garmin.com/apps/fly/files/desktop/mac[^\"']*garminAvnDbManagerSetup_[0-9]+(\\.[0-9]+)*\\.pkg" | head -n1)"
+    appNewVersion="$(echo "${downloadURL}" | sed -E 's/.*garminAvnDbManagerSetup_([0-9]+(\.[0-9]+)*)\.pkg/\1/')"
+    expectedTeamID="72ES32VZUA"
     ;;
 garminbasecamp)
     name="Garmin BaseCamp"
@@ -5844,6 +5867,13 @@ hexfiend)
     expectedTeamID="QK92QP33YN"
     ;;
 
+hiddenbar)
+    name="Hidden Bar"
+    type="zip"
+    downloadURL="$(downloadURLFromGit dwarvesf hidden)"
+    appNewVersion="$(versionFromGit dwarvesf hidden)"
+    expectedTeamID="W777S7V8TN"
+    ;;
 hmavpn)
 name="HMA-VPN"
 type="pkgInDmg"
@@ -10294,6 +10324,14 @@ slack)
     appNewVersion=$( curl -fsIL "${downloadURL}" | grep -i "^location" | cut -d "/" -f7 )
     expectedTeamID="BQR82RBBHL"
     ;;
+slido)
+    name="Slido"
+    type="dmg"
+    downloadURL=$(curl -fsIL "https://www.slido.com/api/download?application=powerpoint-mac" | awk 'BEGIN{IGNORECASE=1}/^location:/{gsub("\r",""); print $2}' | tail -n 1)
+    appNewVersion=$(echo "$downloadURL" | sed -E 's|.*_r([0-9]+)\.dmg$|\1|')
+    versionKey="CFBundleVersion"
+    expectedTeamID="44X73QA89R"
+    ;;
 sloth)
 	# Shows all open files, directories, sockets, and devices used by running processes, offering detailed insights and management capabilities in a user-friendly interface.
     name="Sloth"
@@ -11229,6 +11267,14 @@ things)
     downloadURL="https://culturedcode.com/things/download/"
     expectedTeamID="JLMPQHK86H"
     ;;
+thinlincclient)
+    name="ThinLinc Client"
+    type="dmg"
+    jsonFeed=$(curl -fsL "https://formulae.brew.sh/api/cask/thinlinc-client.json")
+    appNewVersion=$(getJSONValue "$jsonFeed" "version" | awk -F '_' '{ print $1 }')
+    downloadURL=$(getJSONValue "$jsonFeed" "url")
+    expectedTeamID="PHUT6TWL4H"
+    ;;
 thonny)
     name="Thonny"
     type="pkg"
@@ -11246,14 +11292,6 @@ thoriumreader)
     fi
     appNewVersion=$(versionFromGit edrlab thorium-reader)
     expectedTeamID="327YA3JNGT"
-    ;;
-thunderbird)
-    name="Thunderbird"
-    type="dmg"
-    versionKey="CFBundleShortVersionString"
-    appNewVersion=$(curl -s "https://www.thunderbird.net/en-US/thunderbird/releases/atom.xml" | xmllint --xpath "//*[local-name()='entry']/*[local-name()='title'][not(contains(text(), 'esr'))]/text()" - | head -1 | awk '{ print $2 }')
-    downloadURL="https://download.mozilla.org/?product=thunderbird-${appNewVersion}-SSL&os=osx&lang=en-US"
-    expectedTeamID="43AQ936H96"
     ;;
 thunderbird_intl)
     # This label will try to figure out the selected language of the user,
@@ -11279,6 +11317,14 @@ thunderbird_intl)
     appNewVersion=$(curl -fsIL $downloadURL | awk -F releases/ '/Location:/ {split($2,a,"/"); print a[1]}')
     expectedTeamID="43AQ936H96"
     blockingProcesses=( thunderbird )
+    ;;
+thunderbird)
+    name="Thunderbird"
+    type="dmg"
+    versionKey="CFBundleShortVersionString"
+    appNewVersion=$(curl -s "https://www.thunderbird.net/en-US/thunderbird/releases/atom.xml" | xmllint --xpath "//*[local-name()='entry']/*[local-name()='title'][not(contains(text(), 'esr'))]/text()" - | head -1 | awk '{ print $2 }')
+    downloadURL="https://download.mozilla.org/?product=thunderbird-${appNewVersion}-SSL&os=osx&lang=en-US"
+    expectedTeamID="43AQ936H96"
     ;;
 thunderbirdesr)
     name="Thunderbird"
@@ -11306,6 +11352,13 @@ tidal)
     fi
     appNewVersion=$(curl -fs https://support.datajar.co.uk/hc/en-us/articles/360010333638-Jamf-Auto-Update-Application-Catalog | grep -ozpEi ">TIDAL<\/td>\n<td>(.*)<" | grep -oE "((?:[0-9]+\.?)+)" | head -1)
     expectedTeamID="GK2243L7KB"
+    ;;
+tigervnc)
+    name="TigerVNC"
+    type="dmg"
+    appNewVersion=$(curl -fsL "https://api.github.com/repos/TigerVNC/tigervnc/releases/latest" | awk -F'"' '/"tag_name"/{print $4}' | sed 's/^v//')
+    downloadURL="https://downloads.sourceforge.net/project/tigervnc/stable/${appNewVersion}/TigerVNC-${appNewVersion}.dmg"
+    expectedTeamID="S5LX88A9BW"
     ;;
 todoist)
     name="Todoist"

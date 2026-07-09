@@ -120,6 +120,7 @@ betterdisplay
 bettertouchtool
 betterzip
 beyondcomparepro
+bezel
 bibdesk
 bitrix24
 bitwarden
@@ -150,6 +151,7 @@ cakebrew
 calcservice
 calibre
 calibriteprofiler
+cameracontroller
 camostudio
 camtasia
 camtasia2019
@@ -393,6 +395,7 @@ freeplane
 front
 fsmonitor
 fujifilmwebcam
+garminaviationdatabasemanager
 garminbasecamp
 garminexpress
 gary
@@ -452,6 +455,7 @@ handy
 harmonysase
 hazel
 hexfiend
+hiddenbar
 hmavpn
 homebrew
 homerow
@@ -952,6 +956,7 @@ skim
 skype
 slab
 slack
+slido
 sloth
 smartgit
 smartsheet
@@ -1054,6 +1059,7 @@ textexpander
 textmate
 theunarchiver
 things
+thinlincclient
 thonny
 thoriumreader
 thunderbird
@@ -1061,6 +1067,7 @@ thunderbird_intl
 thunderbirdesr
 ticktick
 tidal
+tigervnc
 todoist
 toggltrack
 tom4aconverter
