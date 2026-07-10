@@ -352,7 +352,7 @@ if [[ $(/usr/bin/arch) == "arm64" ]]; then
     fi
 fi
 VERSION="10.10beta"
-VERSIONDATE="2026-07-09"
+VERSIONDATE="2026-07-10"
 
 # MARK: Functions
 
@@ -11270,9 +11270,8 @@ things)
 thinlincclient)
     name="ThinLinc Client"
     type="dmg"
-    jsonFeed=$(curl -fsL "https://formulae.brew.sh/api/cask/thinlinc-client.json")
-    appNewVersion=$(getJSONValue "$jsonFeed" "version" | awk -F '_' '{ print $1 }')
-    downloadURL=$(getJSONValue "$jsonFeed" "url")
+    downloadURL=$(curl -fsL "https://www.cendio.com/thinlinc/download/" | grep -Eo 'https://www\.cendio\.com/downloads/clients/tl-[0-9]+(\.[0-9]+)+_[0-9]+-client-macos\.dmg' | head -1)
+    appNewVersion=$(echo "$downloadURL" | sed -E 's|.*/tl-([0-9]+(\.[0-9]+)+)_[0-9]+-client-macos\.dmg$|\1|')
     expectedTeamID="PHUT6TWL4H"
     ;;
 thonny)
