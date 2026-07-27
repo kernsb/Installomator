@@ -277,6 +277,7 @@ detectxswift
 determinate
 devin
 devonthink
+dia
 dialog
 dialpad
 digiexam
@@ -331,6 +332,7 @@ elevate24
 elgatocamerahub
 elgatostreamdeck
 emacs
+emdash
 enpass
 enteauth
 epicgameslauncher
@@ -348,6 +350,7 @@ everweb
 examplify
 exelbanstats
 exifrenamer
+exocharts
 expressvpn
 extensisconnect
 facebookmessenger
@@ -604,6 +607,7 @@ loom
 loopcloud
 losslesscut
 loupedeck
+lovable
 lowprofile
 lsagent
 lucidlink
@@ -650,7 +654,9 @@ microsoftcompanyportal
 microsoftdefender
 microsoftdefenderatp
 microsoftedge
+microsoftedgebeta
 microsoftedgeconsumerstable
+microsoftedgedev
 microsoftedgeenterprisestable
 microsoftexcel
 microsoftexcelreset
@@ -684,7 +690,6 @@ microsoftskypeforbusiness
 microsoftskypeforbusinessremovaltool
 microsoftteams
 microsoftteams-rollingout
-microsoftteamsclassic
 microsoftteamsnew
 microsoftteamsreset
 microsoftvisualstudiocode
@@ -951,7 +956,6 @@ sketch
 sketchup2024
 sketchup2025
 sketchup2026
-sketchupviewer
 skim
 skype
 slab
@@ -1003,7 +1007,6 @@ starface91x
 stats
 steelseriesengine
 steinbergactivationmanager
-steinbergcubaseelementsaile13
 steinbergcubaseproartist13
 steinberglibrarymanager
 steinbergmediabay
