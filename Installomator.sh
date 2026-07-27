@@ -352,7 +352,7 @@ if [[ $(/usr/bin/arch) == "arm64" ]]; then
     fi
 fi
 VERSION="10.10beta"
-VERSIONDATE="2026-07-21"
+VERSIONDATE="2026-07-27"
 
 # MARK: Functions
 
@@ -2785,6 +2785,18 @@ bibdesk)
     appNewVersion="$(echo $html_page_source | grep -i "current version" | sed -n 's:.*BibDesk-\(.*\).dmg.*:\1:p')"
     expectedTeamID="J33JTA7SY9"
     ;;
+bitfocuscompanion)
+    name="Companion"
+    type="dmg"
+    if [[ $(arch) == "arm64" ]]; then
+        downloadURL=$(curl -fsL "https://api.bitfocus.io/v1/product/companion/packages?branch=stable&limit=5" | grep -o 'https://cf-pub.bitfocus.io/[^"]*' | grep 'mac-arm64' | head -1)
+        appNewVersion=$(echo "${downloadURL}" | sed -E 's/.*-mac-arm64-([0-9.]+)-.*/\1/')
+    elif [[ $(arch) == "i386" ]]; then
+        downloadURL=$(curl -fsL "https://api.bitfocus.io/v1/product/companion/packages?branch=stable&limit=5" | grep -o 'https://cf-pub.bitfocus.io/[^"]*' | grep 'mac-x64' | head -1)
+        appNewVersion=$(echo "${downloadURL}" | sed -E 's/.*-mac-x64-([0-9.]+)-.*/\1/')
+    fi
+    expectedTeamID="FGQ2G3HYBT"
+    ;;
 bitrix24)
      name="Bitrix24"
      type="dmg"
@@ -3137,7 +3149,7 @@ camtasia2023)
     expectedTeamID="7TQL462TU8"
     ;;
 camtasia2024)
-    name="Camtasia"
+    name="Camtasia 2024"
     type="dmg"
     sparkleData=$(curl -fsL -H 'User-Agent: Camtasia/2024.0.0' 'https://www.techsmith.com/redirect.asp?target=sparkleappcast&product=camtasiamac&ver=2024.0.0&lang=enu&os=mac')
     appNewVersion=$(
@@ -5839,6 +5851,19 @@ guardianbrowser)
     fi
     expectedTeamID="7TCATJSU2Y"
     ;;
+guardlydata)
+    name="GuardlyData"
+    type="pkg"
+    if [[ $(arch) == "arm64" ]]; then
+        arch_dir="arm64"
+        downloadURL="https://storage.googleapis.com/guardlydata-apps/arm64/GuardlyData.pkg"
+    else
+        arch_dir="x86_64"
+        downloadURL="https://storage.googleapis.com/guardlydata-apps/x86_64/GuardlyData-Intel.pkg"
+    fi
+    appNewVersion=$(curl -fsL "https://storage.googleapis.com/guardlydata-apps/${arch_dir}/version.txt" 2>/dev/null)
+    expectedTeamID="GMZ7XULHBM"
+    ;;
 gyazo)
     # credit: @matins
     name="Gyazo"
@@ -7588,6 +7613,14 @@ marathoninfinity)
     appNewVersion="$(versionFromGit Aleph-One-Marathon alephone)"
     expectedTeamID="E8K89CXZE7"
     ;;
+markdownpreview)
+    name="Markdown Preview"
+    type="dmg"
+    downloadURL=$(downloadURLFromGit "pluk-inc" "markdown-preview")
+    appNewVersion=$(versionFromGit "pluk-inc" "markdown-preview")
+    archiveName="Markdown-Preview.dmg"
+    expectedTeamID="5P3TSMNV42"
+    ;;
 masv)
     name="MASV"
     type="dmg"
@@ -9096,6 +9129,7 @@ outset)
     packageID="io.macadmins.Outset"
     downloadURL=$(downloadURLFromGit "macadmins" "outset")
     appNewVersion=$(versionFromGit "macadmins" "outset")
+    versionKey="CFBundleVersion"
     expectedTeamID="T4SK8ZXCXG"
     blockingProcesses=( NONE )
     ;;
@@ -10488,7 +10522,7 @@ snagit2023)
     expectedTeamID="7TQL462TU8"
     ;;
 snagit2024)
-    name="Snagit"
+    name="Snagit 2024"
     type="dmg"
     appName="Snagit 2024.app"
     sparkleData=$(curl -fsL -H 'User-Agent: Snagit/2024.0.0' 'https://www.techsmith.com/redirect.asp?target=sufeedurl&product=snagitmac&ver=2024.0.0&lang=enu&os=mac')
@@ -10696,23 +10730,17 @@ spotify)
     fi
     expectedTeamID="2FNC3A47ZF"
     ;;
-sqldeveloper|\
-oraclesqldeveloper)
-    # This label does not support killing blocking processes
-    # The name of the process that needs to be killed is 'java'. Killing that may have unintended consequences.
+sqldeveloper|oraclesqldeveloper)
     name="SQLDeveloper"
     type="zip"
-    downloadURL=$(curl -fs https://www.oracle.com/database/sqldeveloper/technologies/download/ | grep -o 'https://download\.oracle\.com[^"]*macos-x64\.app\.zip')
     if [[ "$(arch)" == "arm64" ]]; then
-        downloadURL=$(echo "$downloadURL" | sed 's/x64/aarch64/')
+        downloadURL=$(curl -fsL https://www.oracle.com/database/sqldeveloper/technologies/download/ | grep -Eo 'https://download\.oracle\.com/otn_software/java/sqldeveloper/sqldeveloper-[0-9\.]*-macos-aarch64\.app\.zip' | head -1)
+    else
+        printlog "Oracle SQL Developer is only available for Apple Silicon (arm64) Macs." ERROR
+        cleanupAndExit 95 "Oracle SQL Developer requires Apple Silicon" ERROR
     fi
-    # CFBundleShortVersionString does not exist. CFBundleVersion gives 4 dot-separated numbers. The custom version gives 5 numbers and matches the version in downloadURL.
-    appNewVersion=$(echo "$downloadURL" | awk -F - '{print $2}')
     versionKey="CFBundleVersion"
-    appCustomVersion() {
-        sql_version_file="/Applications/SQLDeveloper.app/Contents/Resources/sqldeveloper/sqldeveloper/bin/version.properties"
-        [[ -f "${sql_version_file}" ]] && /usr/bin/grep VER_FULL "${sql_version_file}" | /usr/bin/cut -d = -f 2
-    }
+    appNewVersion=$(echo "$downloadURL" | awk -F - '{print $2}' | cut -d . -f 1-4)
     expectedTeamID="VB5E2TV963"
     ;;
 sqlitebrowser)
@@ -12489,6 +12517,19 @@ zipwhip)
     appNewVersion=""
     expectedTeamID="96NL5642U7"
     ;;
+zoapiclient)
+	name="Zoapi Client"
+	type="dmg"
+	appName="Zoapi.app"
+	if [[ $(arch) == "arm64" ]]; then
+		downloadURL="https://share.zoapi.com/zoapi/client/ZoapiClient-Setup.dmg"
+	else
+		printlog "Zoapi Client is only compatible with Apple Silicon (arm64) Macs." ERROR
+		cleanupAndExit 95 "Zoapi Client requires Apple Silicon" ERROR
+	fi
+	appNewVersion=$(curl -fsL "https://share.zoapi.com/zoapi/v0/api/fetch/client/mac/latest-mac.yml" | grep "^version:" | sed 's/^version:[[:space:]]*\([0-9.]*\).*/\1/')
+	expectedTeamID="WFY2HJH6B3"
+	;;
 zohoworkdrive)
 # Using this label expects you to agree to these:
 # License Areemant: https://www.zoho.com/workdrive/zohoworkdrive-license-agreement.html

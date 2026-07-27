@@ -122,6 +122,7 @@ betterzip
 beyondcomparepro
 bezel
 bibdesk
+bitfocuscompanion
 bitrix24
 bitwarden
 bitwigstudio
@@ -450,6 +451,7 @@ graphicconverter10
 grasshopper
 grooveomnidialerenterpriseedition
 guardianbrowser
+guardlydata
 gyazo
 gyazogif
 hancock
@@ -633,6 +635,7 @@ managedappschemabuilder
 marathon
 marathon2
 marathoninfinity
+markdownpreview
 masterfader
 masv
 mattermost
@@ -794,7 +797,6 @@ openrefine
 openvpnconnect
 openvpnconnectv3
 opera
-oraclesqldeveloper
 orbstack
 orcaslicer
 origin
@@ -996,7 +998,6 @@ splashtopsos
 splashtopstreamer
 splice
 spotify
-sqldeveloper
 sqlitebrowser
 sqlpropostgres
 sqlprostudio
@@ -1201,6 +1202,7 @@ zeplin
 zerotier
 zettlr
 zipwhip
+zoapiclient
 zohoworkdrive
 zohoworkdrivegenie
 zohoworkdrivetruesync
