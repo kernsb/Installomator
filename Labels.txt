@@ -56,6 +56,7 @@ anaconda
 anastasiysextensionmanager
 androidfiletransfer
 androidstudio
+ankerwork
 anki
 anotherredisdesktopmanager
 antconc
@@ -64,6 +65,7 @@ apachedirectorystudio
 apachenetbeans
 ape
 apparency
+appautopatch
 appcleaner
 applenyfonts
 appleprovideoformats
@@ -218,6 +220,7 @@ cinema4d2025
 cinema4d2026
 cisdemdocumentreader
 citrixworkspace
+claricopilot
 claudedesktop
 cleartouchcollage
 clevershare2
@@ -241,6 +244,7 @@ colourcontrastanalyser
 conductor
 connectfonts
 container
+containermanager
 cormorant
 coteditor
 craftmanagerforsketch
@@ -278,6 +282,7 @@ detectxswift
 determinate
 devin
 devonthink
+dfublasterpro
 dia
 dialog
 dialpad
@@ -724,6 +729,7 @@ mockoon
 moderncsv
 mongodbcompass
 monitorcontrol
+monotypeconnect
 montereyblocker
 morisawadesktopmanager
 motion
@@ -747,6 +753,7 @@ netspot
 networksharemounter
 nextcloud
 nextcloudtalk
+nexusshell
 nodejs
 nodejslts
 nomachine
@@ -978,6 +985,7 @@ snagit2025
 snagit2026
 snapgene
 snapgeneviewer
+snowflakeodbc
 soapuiopensource
 sococo
 softubecentral
@@ -1037,6 +1045,7 @@ synologydriveclient
 sysexlibrarian
 tabby
 tableaudesktop
+tableauprepbuilder
 tableaupublic
 tableaureader
 tableplus
@@ -1072,6 +1081,7 @@ thunderbirdesr
 ticktick
 tidal
 tigervnc
+timelymemory
 todoist
 toggltrack
 tom4aconverter
