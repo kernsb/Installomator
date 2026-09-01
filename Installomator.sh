@@ -352,7 +352,7 @@ if [[ $(/usr/bin/arch) == "arm64" ]]; then
     fi
 fi
 VERSION="10.10beta"
-VERSIONDATE="2026-08-29"
+VERSIONDATE="2026-09-01"
 
 # MARK: Functions
 
@@ -9404,6 +9404,7 @@ outset)
     packageID="io.macadmins.Outset"
     downloadURL=$(downloadURLFromGit "macadmins" "outset")
     appNewVersion=$(versionFromGit "macadmins" "outset")
+    versionKey="CFBundleVersion"
     expectedTeamID="T4SK8ZXCXG"
     blockingProcesses=( NONE )
     ;;
@@ -10819,7 +10820,7 @@ snagit2023)
     expectedTeamID="7TQL462TU8"
     ;;
 snagit2024)
-    name="Snagit"
+    name="Snagit 2024"
     type="dmg"
     appName="Snagit 2024.app"
     sparkleData=$(curl -fsL -H 'User-Agent: Snagit/2024.0.0' 'https://www.techsmith.com/redirect.asp?target=sufeedurl&product=snagitmac&ver=2024.0.0&lang=enu&os=mac')
