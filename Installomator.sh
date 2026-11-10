@@ -353,7 +353,7 @@ if [[ $(/usr/bin/arch) == "arm64" ]]; then
     fi
 fi
 VERSION="10.10beta"
-VERSIONDATE="2026-11-09"
+VERSIONDATE="2026-11-10"
 
 # MARK: Functions
 
@@ -2696,6 +2696,15 @@ aviatrix)
     type="pkg"
     downloadURL="https://s3-us-west-2.amazonaws.com/aviatrix-download/AviatrixVPNClient/AVPNC_mac.pkg"
     expectedTeamID="32953Z7NBN"
+    ;;
+awdlguard)
+    name="AWDL Guard"
+    type="pkg"
+    archiveName="AWDLGuard-[0-9.]*.pkg"
+    downloadURL=$(downloadURLFromGit moragabriele awdl-guard)
+    appNewVersion=$(versionFromGit moragabriele awdl-guard)
+    expectedTeamID="9WCXJSYTFT"
+    blockingProcesses=( NONE )
     ;;
 awscli2)
     # credit: Bilal Habib (@Pro4TLZZ)
@@ -10177,6 +10186,7 @@ outset)
     packageID="io.macadmins.Outset"
     downloadURL=$(downloadURLFromGit "macadmins" "outset")
     appNewVersion=$(versionFromGit "macadmins" "outset")
+    versionKey="CFBundleVersion"
     expectedTeamID="T4SK8ZXCXG"
     blockingProcesses=( NONE )
     ;;
@@ -11766,7 +11776,7 @@ snagit2023)
     expectedTeamID="7TQL462TU8"
     ;;
 snagit2024)
-    name="Snagit"
+    name="Snagit 2024"
     type="dmg"
     appName="Snagit 2024.app"
     sparkleData=$(curl -fsL -H 'User-Agent: Snagit/2024.0.0' 'https://www.techsmith.com/redirect.asp?target=sufeedurl&product=snagitmac&ver=2024.0.0&lang=enu&os=mac')
