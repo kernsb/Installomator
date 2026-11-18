@@ -270,6 +270,7 @@ codemeter
 coderunner
 codex
 colourcontrastanalyser
+comfyui
 conductor
 connectfonts
 container
@@ -332,6 +333,7 @@ diskspace
 displaylinkmanager
 docker
 dockersbx
+dockside
 dockutil
 doctolib
 domzilla-caffeine
@@ -452,6 +454,7 @@ freeplane
 front
 fsmonitor
 fujifilmwebcam
+fxfactory
 garminaviationdatabasemanager
 garminbasecamp
 garminexpress
@@ -542,6 +545,7 @@ i1profiler
 ibarcoder
 ibmaspera
 ibmasperaconnect
+ibmdatashift
 ibmnotifier
 ice
 icons
@@ -717,6 +721,7 @@ mactracker
 macusb
 macvector
 magicbullet
+magictoolbox
 magnolia
 mailmate
 mailtooutlook
@@ -734,6 +739,7 @@ maxcycling74
 maxonapp
 maxqda24
 maxqda26
+mdmreportingtool
 mdmwatchdog
 meetingbar
 meistertask
@@ -1004,6 +1010,7 @@ reaper
 recordist
 rectangle
 redcanarymacmonitor
+redcinexpro
 redgiant
 redisinsight
 redshift
@@ -1028,6 +1035,7 @@ ringcentralapp
 ringcentralclassicapp
 ringcentralmeetings
 ringcentralphone
+rive
 riversidestudio
 rocket
 rocketchat
@@ -1131,6 +1139,7 @@ sqlprostudio
 sshfs
 stackfield
 starface10x
+starface11x
 starface90x
 starface91x
 stats
@@ -1145,6 +1154,7 @@ subethaedit
 sublimemerge
 sublimetext
 suitestudio
+sumb
 sunsama
 supercollider
 superhuman
@@ -1220,6 +1230,7 @@ toonboomharmonypremium2024
 toonboomharmonypremium2025
 toonboomstoryboardpro2024
 toonboomstoryboardpro2025
+toonboomstoryboardpro2027
 topazgigapixel
 topazgigapixelai
 topazphoto
